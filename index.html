@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MusicX — Your Music, Your Way</title>
+  <meta name="description"
+    content="MusicX — Stream, download & enjoy latest songs offline and ad-free. Hindi, Punjabi, Tamil, Telugu and more." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+  <meta property="og:title" content="MusicX — Your Music, Your Way" />
+  <meta property="og:description"
+    content="Download trending songs offline, ad-free. Voice search, rewards, and encrypted downloads." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #121212;
+      --muted: #9aa0a6;
+      --accent1: #7c4dff;
+      --accent2: #00d4ff;
+      --pink: #ff4d7e;
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-2: rgba(255, 255, 255, 0.02);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(124, 77, 255, 0.08), transparent 8%),
+        radial-gradient(900px 400px at 90% 90%, rgba(0, 212, 255, 0.05), transparent 8%),
+        var(--bg);
+      color: #e9eef5;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased
+    }
+
+    a {
+      color: inherit
+    }
+
+    /* navbar */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+      z-index: 40;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+    }
+
+    .title {
+      font-size: 18px;
+      margin: 0
+    }
+
+    nav {
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 10px
+    }
+
+    nav a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.02)
+    }
+
+    .playstore {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: #021322;
+      font-weight: 700;
+      text-decoration: none
+    }
+
+    /* hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 36px;
+      align-items: center;
+      padding: 64px 6vw
+    }
+
+    .hero-left h1 {
+      font-size: 38px;
+      margin: 0 0 12px 0
+    }
+
+    .hero-left p {
+      color: var(--muted);
+      margin: 0 0 18px 0;
+      font-size: 15px;
+      max-width: 720px
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 10px
+    }
+
+    .btn {
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #021322
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      background: transparent
+    }
+
+    .cover {
+      height: 200px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      display: flex;
+      align-items: end;
+      padding: 14px;
+      color: #021322;
+      font-weight: 800;
+      font-size: 18px
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 12px
+    }
+
+    /* features */
+    .features {
+      padding: 26px 6vw;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 12px
+    }
+
+    .feature {
+      background: var(--glass);
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    .feature h3 {
+      margin: 0 0 8px 0;
+      font-size: 16px
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px
+    }
+
+    /* description */
+    .description {
+      padding: 26px 6vw;
+      display: flex;
+      justify-content: center
+    }
+
+    .description .card {
+      max-width: 900px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      color: var(--muted)
+    }
+
+    /* screenshots */
+    .screens {
+      padding: 50px 6vw;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .shot {
+      width: 220px;
+      height: 450px;
+      border-radius: 8px;
+      background: #7c4dff;
+      border: px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thumb {
+      width: 62px;
+      height: 62px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent1));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #021322
+    }
+
+    .meta {
+      flex: 1
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px
+    }
+
+    /* contact */
+    .contact {
+      padding: 34px 6vw;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.00));
+      border-top: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .contact .muted {
+      color: var(--muted)
+    }
+
+    .form .field {
+      margin-bottom: 10px
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      background: transparent;
+      color: inherit
+    }
+
+    /* footer */
+    footer {
+      padding: 18px 6vw;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      margin-top: 40px
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto
+    }
+
+    .social-icons i {
+      font-size: 32px;
+      margin: 10px;
+    }
+
+    .facebook {
+      color: #1877F2;
+      /* Facebook Blue */
+    }
+
+    .instagram {
+      /* Instagram gradient */
+      color: #E4405F;
+    }
+
+    .youtube {
+      color: #FF0000;
+      /* YouTube Red */
+    }
+
+    .linkedin {
+      color: #0A66C2;
+      /* LinkedIn Blue */
+    }
+
+    .telegram {
+      color: #26A5E4;
+      /* Telegram Blue */
+    }
+
+    .twitter {
+      color: #1DA1F2;
+      /* Twitter Blue */
+    }
+
+    /* responsive */
+    @media(max-width:980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      .player {
+        order: 2
+      }
+    }
+
+    @media(max-width:540px) {
+      .cover {
+        height: 180px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="index.html">
+      <div class="icon" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;">
+        <img src="assets/app_logo.png" alt="MusicX Logo"
+          style="width:48px;height:48px;border-radius:8px;object-fit:cover;">
+      </div>
+      <div>
+        <div class="title">MusicX</div>
+        <div style="font-size:12px;color:var(--muted)">Stream • Download • Secure</div>
+      </div>
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#features">Features</a>
+      <a href="privacy-policy.html" target="_blank">Privacy</a>
+      <a href="terms-and-conditions.html" target="_blank">Terms</a>
+      <a class="playstore" href="https://play.google.com/store/apps/details?id=com.app.musicx&hl=en"
+        target="_blank">Play Store</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <h1 id="hero-heading">MusicX — Stream. Download. Own your music.</h1>
+        <p>Beautiful listening for every moment. Stream on the go, download encrypted tracks for offline play, and
+          manage your collection with smart playlists and offline-first performance. Built with privacy and speed in
+          mind.</p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.app.musicx&hl=en"
+            target="_blank" rel="noopener">Download on Play Store</a>
+          <a class="btn btn-outline" href="https://forms.gle/jfVBNxxBF3oWhWZ87" target="_blank" rel="noopener">Feedback
+            / Queries</a>
+        </div>
+
+        <div style="margin-top:18px;color:var(--muted);font-size:13px;max-width:680px">
+          <strong>Contact:</strong> <a href="mailto:musicx.app.official@gmail.com">musicx.app.official@gmail.com</a>
+        </div>
+
+        <!-- Short feature chips -->
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <div style="background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:12px;font-weight:700">Encrypted
+            downloads</div>
+          <div style="background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:12px;font-weight:700">
+            Voice-to-text search</div>
+          <div style="background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:12px;font-weight:700">Rewards &
+            offline</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features" aria-label="Features">
+      <div class="feature">
+        <h3>Encrypted Downloads</h3>
+        <p>Secure offline files with device-specific encryption — only MusicX can play them.</p>
+      </div>
+      <div class="feature">
+        <h3>Offline-first Playback</h3>
+        <p>Play your downloaded music instantly — no network required.</p>
+      </div>
+      <div class="feature">
+        <h3>Voice-to-text Search</h3>
+        <p>Speak to search — fast and convenient discovery with voice recognition.</p>
+      </div>
+      <div class="feature">
+        <h3>Reward Points</h3>
+        <p>Earn points by watching ads to unlock downloads and ad-free listening.</p>
+      </div>
+    </section>
+
+    <section class="description" aria-label="App description">
+      <div class="card">
+        <div style="text-align:center;margin-bottom:12px">
+          <h2 style="margin:0;color:var(--pink)">Welcome to <strong>MusicX</strong></h2>
+        </div>
+
+        <div style="color:var(--muted);font-size:14px">
+          <p style="text-align:center;margin:6px 0">your all-in-one music companion for downloading and enjoying the
+            latest &amp; trending songs offline and ad-free!</p>
+
+          <p style="text-align:center;font-size:12px;margin:6px 0">
+            🎤 Hindi • 💃 Punjabi • 🎶 Tamil • 🎧 Telugu • 🎼 Malayalam • 🎵 Bhojpuri • 🕺 Haryanvi • 🏜 Rajasthani
+          </p>
+          <p style="text-align:center;margin-top:10px;color:var(--muted);font-size:13px"><strong>Reward system:</strong>
+            New users receive 25 points. Each offline download costs 5 points.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="screens" aria-label="Screenshots">
+      <div class="shot">
+        <img src="assets/app_login_placeholder.jpeg" alt="MusicX Logo"
+          style="width:220px;height:450px;border-radius:8px;object-fit:cover;">
+      </div>
+      <div class="shot">
+        <img src="assets/app_home_placeholder.jpeg" alt="MusicX Logo"
+          style="width:220px;height:450px;border-radius:8px;object-fit:cover;">
+      </div>
+      <div class="shot">
+        <img src="assets/app_singer_placeholder.jpeg" alt="MusicX Logo"
+          style="width:220px;height:450px;border-radius:8px;object-fit:cover;">
+      </div>
+      <div class="shot">
+        <img src="assets/app_saved_placeholder.jpeg" alt="MusicX Logo"
+          style="width:220px;height:450px;border-radius:8px;object-fit:cover;">
+      </div>
+      <div class="shot">
+        <img src="assets/app_reward_placeholder.jpeg" alt="MusicX Logo"
+          style="width:220px;height:450px;border-radius:8px;object-fit:cover;">
+      </div>
+
+    </section>
+
+    <section id="contact" class="contact" aria-label="Contact">
+      <div class="contact-grid">
+        <div>
+          <h3>Get in touch</h3>
+          <p class="muted">For queries & feedback use: <a href="https://forms.gle/jfVBNxxBF3oWhWZ87" target="_blank"
+              rel="noopener">Feedback form</a></p>
+          <p class="muted">Email: <a href="mailto:musicx.app.official@gmail.com">musicx.app.official@gmail.com</a></p>
+          <p class="muted">Play Store: <a href="https://play.google.com/store/apps/details?id=com.app.musicx&hl=en"
+              target="_blank" rel="noopener">MusicX on Play Store</a></p>
+        </div>
+
+        <div>
+          <form class="form" onsubmit="sendEmail(event)">
+            <div class="field"><label class="muted">Name</label><input type="text" id="fname" placeholder="Your name"
+                required></div>
+            <div class="field"><label class="muted">Email</label><input type="email" id="femail"
+                placeholder="you@example.com" required></div>
+            <div class="field"><label class="muted">Message</label><textarea id="fmsg" rows="4" placeholder="Tell us..."
+                required></textarea></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-primary" type="submit">Email</button>
+            </div>
+            <div id="formFeedback" style="margin-top:10px;color:var(--muted);font-size:13px"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-row">
+      <div>© <strong>MusicX</strong> — Built with ♥ by <span style="color:var(--muted)">Palash Sethiya</span>
+      </div>
+      <div class="social-icons">
+        <i class="mdi mdi-facebook facebook"></i>
+        <i class="mdi mdi-instagram instagram"></i>
+        <i class="mdi mdi-youtube youtube"></i>
+        <i class="mdi mdi-linkedin linkedin"></i>
+        <i class="mdi mdi-telegram telegram"></i>
+        <i class="mdi mdi-twitter twitter"></i>
+
+        <svg class="telegram-fallback" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+          focusable="false" title="Telegram">
+          <path fill="#26A5E4"
+            d="M176.9 76.3l-18.2 86c-1.4 6.6-5.2 8.3-10.6 5.2l-29.4-21.7-14.2 13.6c-1.6 1.6-2.9 2.9-5.9 2.9l2.1-30.1 54.8-49.6c2.4-2.1-.5-3.3-3.7-1.2L86 119.4 50 103.9c-6.3-2.1-6.4-6.3 1.3-9.3l120.6-46.4c5.6-2.1 10.4 1.4 8.9 9.1z" />
+        </svg>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="muted">Contact: <a href="mailto:musicx.app.official@gmail.com">musicx.app.official@gmail.com</a>
+        </div>
+        <div class="muted">•</div>
+        <div class="muted"><a href="privacy-policy.html">Privacy</a></div>
+        <div class="muted">•</div>
+        <div class="muted"><a href="terms-and-conditions.html">Terms</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Interactivity
+    function playSample(src) {
+      const audio = document.getElementById('sampleAudio');
+      if (audio) {
+        audio.src = src;
+        audio.play().catch(() => { });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+    function downloadSample(title, src) {
+      const feedback = document.getElementById('formFeedback');
+      if (feedback) feedback.textContent = 'Starting download for "' + title + '" — encryption will be applied by the app.';
+      const a = document.createElement('a'); a.href = src; a.download = title + '.mp3'; document.body.appendChild(a); a.click(); a.remove();
+    }
+    function openForm(e) {
+      e.preventDefault();
+      // Open the google form in a new tab (primary feedback flow)
+      window.open('https://forms.gle/jfVBNxxBF3oWhWZ87', '_blank');
+      const fb = document.getElementById('formFeedback');
+      if (fb) fb.textContent = 'Opening feedback form...';
+    }
+
+    function sendEmail(e) {
+      e.preventDefault();
+      // Get values
+      const name = document.getElementById("fname").value.trim();
+      const email = document.getElementById("femail").value.trim();
+      const message = document.getElementById("fmsg").value.trim();
+
+      // Build email
+      const subject = "Feedback from " + name;
+      const body = `${encodeURIComponent(message)}%0A%0A` + `Name: ${name}%0A` + `Email: ${email}`;
+
+      const mailtoLink = `mailto:musicx.app.official@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+      // Open email client
+      window.location.href = mailtoLink;
+      const fb = document.getElementById('formFeedback');
+      if (fb) fb.textContent = 'Opening email...';
+    }
+  </script>
+</body>
+
+</html>
